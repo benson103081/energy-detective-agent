@@ -1,0 +1,2170 @@
+[
+  {
+    "title": "Energy Detective｜建築用電異常調查 AI Agent",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94,
+        "w": 876,
+        "h": 84,
+        "text": "物聯網數據分析與應用 · Final Project Proposal",
+        "size": 23,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 188,
+        "w": 876,
+        "h": 84,
+        "text": "用公開電表與天氣資料，產出有依據的調查建議。",
+        "size": 23,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 282,
+        "w": 876,
+        "h": 84,
+        "text": "AI Agent ＋ Domain Knowledge ＋ Data Analytics",
+        "size": 23,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 376,
+        "w": 876,
+        "h": 84,
+        "text": "組員／學號：繳交前填入　｜　2026-11-03\nProposal 階段：系統與實驗尚未完成",
+        "size": 23,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": ""
+  },
+  {
+    "title": "研究動機｜為什麼值得做？",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94,
+        "w": 876,
+        "h": 84,
+        "text": "2025 年全球用電需求約增 3%；建築占當年用電增量近 45%。",
+        "size": 21,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 188,
+        "w": 876,
+        "h": 84,
+        "text": "設施管理者需要從「曲線變高」判斷：要先查資料、天氣或營運排程？",
+        "size": 21,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 282,
+        "w": 876,
+        "h": 84,
+        "text": "公開總表可做初步調查，但不能直接確認某台設備故障。",
+        "size": 21,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 376,
+        "w": 876,
+        "h": 84,
+        "text": "目標：把異常訊號轉成可核對、能採取下一步行動的調查報告。",
+        "size": 21,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": "[D1] IEA 2026；[D3] BDG2；[D8] DOE"
+  },
+  {
+    "title": "問題定義與專題範圍",
+    "source": "[D3][D6][D8]",
+    "objects": [
+      {
+        "x": 42,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "使用情境\n\n使用者：校園／辦公建築設施管理者。\n\n輸入：建築 ID、期間與調查問題。\n\n輸出：異常事件、比較基準、證據、替代解釋與查核建議。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 488,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "主要限制\n\n資料缺漏與尖峰未必是設備故障。\n\n夜間不一定無人使用。\n\n歷史偏離量不等於已實現節電。\n\nMVP：公開資料歷史重播；不接控制設備。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "Related Work｜AI Technology（完整表見提案）",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94,
+        "w": 55,
+        "h": 38,
+        "text": "Ref.",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 94,
+        "w": 58,
+        "h": 38,
+        "text": "Year",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 94,
+        "w": 130,
+        "h": 38,
+        "text": "Problem",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 94,
+        "w": 140,
+        "h": 38,
+        "text": "AI Method",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 94,
+        "w": 110,
+        "h": 38,
+        "text": "Domain",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 94,
+        "w": 112,
+        "h": 38,
+        "text": "Dataset",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 94,
+        "w": 147,
+        "h": 38,
+        "text": "Findings",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 94,
+        "w": 124,
+        "h": 38,
+        "text": "Limitation",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 132,
+        "w": 55,
+        "h": 73,
+        "text": "A1",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 132,
+        "w": 58,
+        "h": 73,
+        "text": "2023",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 132,
+        "w": 130,
+        "h": 73,
+        "text": "工具取得外部事實",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 132,
+        "w": 140,
+        "h": 73,
+        "text": "ReAct\n推理＋動作",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 132,
+        "w": 110,
+        "h": 73,
+        "text": "動作與觀察",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 132,
+        "w": 112,
+        "h": 73,
+        "text": "QA／互動任務",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 132,
+        "w": 147,
+        "h": 73,
+        "text": "多類任務有工具互動效益",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 132,
+        "w": 124,
+        "h": 73,
+        "text": "可能重複動作；非建築",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 205,
+        "w": 55,
+        "h": 73,
+        "text": "A2",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 205,
+        "w": 58,
+        "h": 73,
+        "text": "2025",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 205,
+        "w": 130,
+        "h": 73,
+        "text": "可解釋異常偵測",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 205,
+        "w": 140,
+        "h": 73,
+        "text": "Argos\n規則＋基礎模型",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 205,
+        "w": 110,
+        "h": 73,
+        "text": "標註異常模式",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 205,
+        "w": 112,
+        "h": 73,
+        "text": "KPI／Yahoo等",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 205,
+        "w": 147,
+        "h": 73,
+        "text": "融合規則在文中比較中改善",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 205,
+        "w": 124,
+        "h": 73,
+        "text": "依賴標註；非建築",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 278,
+        "w": 55,
+        "h": 73,
+        "text": "A3",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 278,
+        "w": 58,
+        "h": 73,
+        "text": "2025",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 278,
+        "w": 130,
+        "h": 73,
+        "text": "誤報人工複核",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 278,
+        "w": 140,
+        "h": 73,
+        "text": "k-NN＋多模態LLM",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 278,
+        "w": 110,
+        "h": 73,
+        "text": "曲線與背景",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 278,
+        "w": 112,
+        "h": 73,
+        "text": "18個UCR子集",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 278,
+        "w": 147,
+        "h": 73,
+        "text": "降低誤報伴隨漏報取捨",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 278,
+        "w": 124,
+        "h": 73,
+        "text": "使用測試真值調參",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 351,
+        "w": 55,
+        "h": 73,
+        "text": "A4",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 351,
+        "w": 58,
+        "h": 73,
+        "text": "2025",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 351,
+        "w": 130,
+        "h": 73,
+        "text": "建築時序查詢",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 351,
+        "w": 140,
+        "h": 73,
+        "text": "GPT-4o＋SPARQL／Python",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 351,
+        "w": 110,
+        "h": 73,
+        "text": "Brick設備關係",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 351,
+        "w": 112,
+        "h": 73,
+        "text": "FLEXLAB",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 351,
+        "w": 147,
+        "h": 73,
+        "text": "氣流問題3/5成功",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 351,
+        "w": 124,
+        "h": 73,
+        "text": "小案例；回答有遺漏",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 424,
+        "w": 55,
+        "h": 73,
+        "text": "A5",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 424,
+        "w": 58,
+        "h": 73,
+        "text": "2025",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 424,
+        "w": 130,
+        "h": 73,
+        "text": "異常類型與解釋",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 424,
+        "w": 140,
+        "h": 73,
+        "text": "Time-RA\nLLM／微調",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 424,
+        "w": 110,
+        "h": 73,
+        "text": "領域異常分類",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 424,
+        "w": 112,
+        "h": 73,
+        "text": "RATs40K",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 424,
+        "w": 147,
+        "h": 73,
+        "text": "展示分類與說明效益",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 424,
+        "w": 124,
+        "h": 73,
+        "text": "AI說明非根因真值",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      }
+    ],
+    "source": "[A1]–[A5]；2025 預印本按所讀版本引用"
+  },
+  {
+    "title": "Related Work｜Domain Know-how",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94,
+        "w": 55,
+        "h": 38,
+        "text": "Ref.",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 94,
+        "w": 58,
+        "h": 38,
+        "text": "Year",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 94,
+        "w": 130,
+        "h": 38,
+        "text": "Problem",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 94,
+        "w": 140,
+        "h": 38,
+        "text": "AI Method",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 94,
+        "w": 110,
+        "h": 38,
+        "text": "Domain",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 94,
+        "w": 112,
+        "h": 38,
+        "text": "Dataset",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 94,
+        "w": 147,
+        "h": 38,
+        "text": "Findings",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 94,
+        "w": 124,
+        "h": 38,
+        "text": "Limitation",
+        "size": 11,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 132,
+        "w": 55,
+        "h": 73,
+        "text": "D1",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 132,
+        "w": 58,
+        "h": 73,
+        "text": "2026",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 132,
+        "w": 130,
+        "h": 73,
+        "text": "需求為何成長",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 132,
+        "w": 140,
+        "h": 73,
+        "text": "N/A\n統計分析",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 132,
+        "w": 110,
+        "h": 73,
+        "text": "部門、天氣",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 132,
+        "w": 112,
+        "h": 73,
+        "text": "2025全球統計",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 132,
+        "w": 147,
+        "h": 73,
+        "text": "建築占新增用電近45%",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 132,
+        "w": 124,
+        "h": 73,
+        "text": "不能推定單棟浪費",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 205,
+        "w": 55,
+        "h": 73,
+        "text": "D3",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 205,
+        "w": 58,
+        "h": 73,
+        "text": "2020",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 205,
+        "w": 130,
+        "h": 73,
+        "text": "公開建築基準",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 205,
+        "w": 140,
+        "h": 73,
+        "text": "資料品質篩查",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 205,
+        "w": 110,
+        "h": 73,
+        "text": "總表、場址、天氣",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 205,
+        "w": 112,
+        "h": 73,
+        "text": "BDG2",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 205,
+        "w": 147,
+        "h": 73,
+        "text": "1636建築、3053各類表",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 205,
+        "w": 124,
+        "h": 73,
+        "text": "缺少設備根因標籤",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 278,
+        "w": 55,
+        "h": 73,
+        "text": "D7",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 278,
+        "w": 58,
+        "h": 73,
+        "text": "2020",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 278,
+        "w": 130,
+        "h": 73,
+        "text": "分析的實務價值",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 278,
+        "w": 140,
+        "h": 73,
+        "text": "多種EIS／FDD",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 278,
+        "w": 110,
+        "h": 73,
+        "text": "監測與營運改善",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 278,
+        "w": 112,
+        "h": 73,
+        "text": "104組織、6500建築",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 278,
+        "w": 147,
+        "h": 73,
+        "text": "EIS/FDD節能中位3%/9%",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 278,
+        "w": 124,
+        "h": 73,
+        "text": "不可外推本專題",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 42,
+        "y": 351,
+        "w": 55,
+        "h": 73,
+        "text": "D8",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 97,
+        "y": 351,
+        "w": 58,
+        "h": 73,
+        "text": "未標年",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 155,
+        "y": 351,
+        "w": 130,
+        "h": 73,
+        "text": "如何驗證節能",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 285,
+        "y": 351,
+        "w": 140,
+        "h": 73,
+        "text": "N/A\n量測／回歸",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 425,
+        "y": 351,
+        "w": 110,
+        "h": 73,
+        "text": "基準與量測邊界",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 535,
+        "y": 351,
+        "w": 112,
+        "h": 73,
+        "text": "DOE指南",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 647,
+        "y": 351,
+        "w": 147,
+        "h": 73,
+        "text": "定義A–D量測驗證選項",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      },
+      {
+        "x": 794,
+        "y": 351,
+        "w": 124,
+        "h": 73,
+        "text": "非異常偵測實驗",
+        "size": 10.5,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "CAD7DE"
+      }
+    ],
+    "source": "[D1][D3][D7][D8]；網頁查核 2026-11-03"
+  },
+  {
+    "title": "Research Gap → Our Project",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "Existing Research：工具 Agent、建築查詢、異常偵測及文字解釋已有先例。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 176.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "Limitations：資料品質、數值引用、條件假設與根因邊界仍須逐案檢查。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 258.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "Research Gap：資訊有限時，如何形成完整且不過度推論的可追溯調查？",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 340.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "Our Project：Python 可重現分析＋受限工具規劃＋領域規則＋證據檢查。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 422.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "預期貢獻：調查流程、證據格式與公平比較；是否改善由實驗回答。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": "[A1]–[A5]；[D3][D8]"
+  },
+  {
+    "title": "Deep Research Q1｜五個核心思維",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "① 正常必須有條件 → 同建築、星期／時段與天氣的可比較基準。[D1][D8]",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 176.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "② 先查資料品質 → 保留 raw 與品質旗標，避免把缺值當故障。[D6]",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 258.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "③ 統計偏離不等於根因 → 區分觀察、假說與還缺的現場證據。[D8]",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 340.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "④ 分析要能支援行動 → 合併事件，列優先調查事項與可核對證據。[D7]",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 422.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "⑤ 公開基準不保證泛化 → 時間切分並檢查不同建築的表現。[D3]",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": ""
+  },
+  {
+    "title": "Deep Research Q2｜三項專業取捨",
+    "source": "",
+    "objects": [
+      {
+        "x": 42,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "1. 積極清理 ↔ 保留可疑讀值\n雙方依據：cleaned減少污染，但也移除離群與零值。[D6]\n共同原則：保留版本及品質旗標。\n未解：沒有現場紀錄時如何區分真異常？\n\n2. 共通模型 ↔ 逐棟模型\n依據：多建築可共享資訊，但用途／氣候不同。[D3][D4][D8]\n共同原則：分建築檢驗。\n未解：何時需要本地校正？",
+        "size": 16,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 488,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "3. 直接量化節電 ↔ 保留待查機會\n\n量化依據：實務分析支援營運改善。[D7]\n保留依據：節電需要介入後量測與調整基準。[D8]\n\n共同原則：區分偏離、機會與實際節電。\n未解：多少異常負載可不影響服務而消除？\n\n本專題：只報相對基準偏離量。",
+        "size": 16,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "Deep Research Q3｜十個深度理解問題",
+    "source": "",
+    "objects": [
+      {
+        "x": 42,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "01 缺少故障標籤，如何評估事件？\n\n02 天氣與季節改變後，異常還成立嗎？\n\n03 raw／cleaned 會如何改變結論？\n\n04 如何區分停館、缺值與量測故障？\n\n05 何時應停止推論並要求補證據？",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 488,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "06 何時需逐棟／跨建築參照？\n\n07 工具證據是否真正支持文字主張？\n\n08 告警合併如何影響召回與查核負擔？\n\n09 Agent 增益來自規劃、規則或表達？\n\n10 確認根因與節電還需要哪些證據？",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "Agent 使用情境｜從提問到調查",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "使用者：「請調查指定建築在測試期間的夜間用電是否異常。」",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 176.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "Agent 確認建築、日期及時段；不清楚的必要欄位先補問。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 258.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "工具依序查資料品質與同類時段基準，必要時比較天氣與事件持續時間。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 340.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "報告列出觀測值、基準、時間窗、工具證據 ID、適用規則與替代解釋。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 422.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "下一步：「核對排程與使用變化」；無設備資料就不宣告空調故障。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": ""
+  },
+  {
+    "title": "System Architecture｜八個主要模組",
+    "objects": [
+      {
+        "x": 42,
+        "y": 114,
+        "w": 201,
+        "h": 80,
+        "text": "① 需求解析\n與範圍驗證",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 244,
+        "y": 134,
+        "w": 24,
+        "h": 45,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 267,
+        "y": 114,
+        "w": 201,
+        "h": 80,
+        "text": "② 受限規劃\n與工具控制",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 469,
+        "y": 134,
+        "w": 24,
+        "h": 45,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 492,
+        "y": 114,
+        "w": 201,
+        "h": 80,
+        "text": "③ CSV取得\n與歷史重播",
+        "size": 18,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 694,
+        "y": 134,
+        "w": 24,
+        "h": 45,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 717,
+        "y": 114,
+        "w": 201,
+        "h": 80,
+        "text": "④ 時序資料\n品質檢查",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 717,
+        "y": 260,
+        "w": 201,
+        "h": 80,
+        "text": "⑤ 基準\n與異常分析",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 694,
+        "y": 280,
+        "w": 24,
+        "h": 45,
+        "text": "←",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 492,
+        "y": 260,
+        "w": 201,
+        "h": 80,
+        "text": "⑥ 領域規則\n與假說",
+        "size": 18,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 469,
+        "y": 280,
+        "w": 24,
+        "h": 45,
+        "text": "←",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 267,
+        "y": 260,
+        "w": 201,
+        "h": 80,
+        "text": "⑦ 證據整合\n與報告",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 244,
+        "y": 280,
+        "w": 24,
+        "h": 45,
+        "text": "←",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 260,
+        "w": 201,
+        "h": 80,
+        "text": "⑧ 離線評估",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 806,
+        "y": 209,
+        "w": 46,
+        "h": 40,
+        "text": "↓",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 209,
+        "w": 740,
+        "h": 40,
+        "text": "② 依觀察選工具；④／⑤ 提供證據給 ⑦",
+        "size": 16,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 369,
+        "w": 876,
+        "h": 100,
+        "text": "輸入：使用者指定建築與期間；資料：BDG2 電表＋天氣＋建築資訊\n⑦ 輸出可追溯報告；② 執行紀錄與 ⑦ 報告交給 ⑧ 離線評估。\n各工具將結果回傳 ②，查核不足時補問使用者或停止。",
+        "size": 17,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": "各模組責任與介面見 DESIGN.md",
+    "diagram": "architecture"
+  },
+  {
+    "title": "資料來源與前處理",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "BDG2：2016–2017 每小時；1,636 建築、3,053 各類表；只取電力子集。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 176.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "電表 raw/electricity.csv＋weather/weather.csv＋metadata/metadata.csv。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 258.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "電量 kWh；依場址與時間對齊。檢查缺值、重複、零值及時間順序。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 340.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "raw 也經初步整理；cleaned 已移除部分離群／零值，僅作敏感度比較。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 422.0,
+        "w": 876,
+        "h": 72.0,
+        "text": "沒有已確認故障根因標籤；固定時間切分、保留資料版本及授權。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": "[D3]–[D6]；完整資料路徑見提案"
+  },
+  {
+    "title": "AI / Analytics / Domain Knowledge",
+    "source": "[A1][A4]；[D6][D8]",
+    "objects": [
+      {
+        "x": 42,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "Python：數值分析\n\n品質檢查、條件基準、殘差、事件合併。\n\nLLM：受限工具選擇\n\n輸出結構化任務，只能呼叫已定義工具；不執行任意生成程式。\n\n所有數值由工具結果帶入。",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 488,
+        "y": 98,
+        "w": 430,
+        "h": 390,
+        "text": "Domain Knowledge：明示規則\n\n同類日／時段才比較。\n夜間不直接等於非營運。\n資料異常先分流。\n總表結論不得超出量測範圍。\n\nReport：觀察→基準→假說→缺少證據→下一步。",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "Flowchart｜包含分支、重試與終止條件",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94,
+        "w": 388,
+        "h": 42,
+        "text": "需求與資料範圍明確？",
+        "size": 16,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 438,
+        "y": 94,
+        "w": 42,
+        "h": 42,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 484,
+        "y": 94,
+        "w": 434,
+        "h": 42,
+        "text": "否 → 補問必要資訊／結束",
+        "size": 15,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 210,
+        "y": 133,
+        "w": 50,
+        "h": 22,
+        "text": "↓",
+        "size": 13,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 150,
+        "w": 388,
+        "h": 42,
+        "text": "規劃 → 檢查工具與參數",
+        "size": 16,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 438,
+        "y": 150,
+        "w": 42,
+        "h": 42,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 484,
+        "y": 150,
+        "w": 434,
+        "h": 42,
+        "text": "不合法 → 修正一次；仍錯即停止",
+        "size": 15,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 210,
+        "y": 189,
+        "w": 50,
+        "h": 22,
+        "text": "↓",
+        "size": 13,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 206,
+        "w": 388,
+        "h": 42,
+        "text": "載入資料 → 品質足夠？",
+        "size": 16,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 438,
+        "y": 206,
+        "w": 42,
+        "h": 42,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 484,
+        "y": 206,
+        "w": 434,
+        "h": 42,
+        "text": "I/O僅重試一次；品質不足即報告",
+        "size": 15,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 210,
+        "y": 245,
+        "w": 50,
+        "h": 22,
+        "text": "↓",
+        "size": 13,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 262,
+        "w": 388,
+        "h": 42,
+        "text": "分析基準、殘差與事件",
+        "size": 16,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 438,
+        "y": 262,
+        "w": 42,
+        "h": 42,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 484,
+        "y": 262,
+        "w": 434,
+        "h": 42,
+        "text": "失敗 → 保存證據與限制後停止",
+        "size": 15,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 210,
+        "y": 301,
+        "w": 50,
+        "h": 22,
+        "text": "↓",
+        "size": 13,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 318,
+        "w": 388,
+        "h": 42,
+        "text": "依觀察選用領域規則？",
+        "size": 16,
+        "fill": "DCEDEE",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 438,
+        "y": 318,
+        "w": 42,
+        "h": 42,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 484,
+        "y": 318,
+        "w": 434,
+        "h": 42,
+        "text": "是 → 查核適用規則；否 → 記錄省略原因",
+        "size": 15,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 210,
+        "y": 357,
+        "w": 50,
+        "h": 22,
+        "text": "↓",
+        "size": 13,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 374,
+        "w": 388,
+        "h": 42,
+        "text": "領域規則 → 引用與數值檢查",
+        "size": 16,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 438,
+        "y": 374,
+        "w": 42,
+        "h": 42,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 484,
+        "y": 374,
+        "w": 434,
+        "h": 42,
+        "text": "不通過 → 固定模板；不捏造原因",
+        "size": 15,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 210,
+        "y": 413,
+        "w": 50,
+        "h": 22,
+        "text": "↓",
+        "size": 13,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 430,
+        "w": 388,
+        "h": 42,
+        "text": "保存報告與證據 → 離線評估",
+        "size": 16,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": "087E8B"
+      },
+      {
+        "x": 438,
+        "y": 430,
+        "w": 42,
+        "h": 42,
+        "text": "→",
+        "size": 18,
+        "fill": null,
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 484,
+        "y": 430,
+        "w": 434,
+        "h": 42,
+        "text": "輸出／結束；所有失敗保留紀錄",
+        "size": 15,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ],
+    "source": "天氣／作息資料不足則停用對應規則；完整 Mermaid 見 DESIGN.md",
+    "diagram": "flowchart"
+  },
+  {
+    "title": "Pseudocode｜Algorithm 1（1–23）",
+    "source": "Input：問題、設定、重播截止時間；Output：可追溯報告／待補資訊／失敗紀錄",
+    "objects": [
+      {
+        "x": 38,
+        "y": 94,
+        "w": 886,
+        "h": 400,
+        "text": "01 PROCEDURE ENERGY_DETECTIVE(question, config, replay_until)\n02   INIT_GUARD(tool_budget = 10, io_retry_used = FALSE, allowed_tools)\n03   manifest ← GUARDED_CALL(inspect_dataset, config.dataset_id)\n04   IF failed(manifest) THEN RETURN FAILURE_WITH_LOG(manifest.error)\n05   request ← PARSE_AND_VALIDATE(question, manifest)\n06   IF request incomplete THEN RETURN NEED_INPUT(request.missing)\n07   plan ← LLM_PLAN(request, manifest, fixed_config, dependency_constraints)\n08   IF invalid(plan) THEN plan ← REPAIR_ONCE(plan)\n09   IF invalid(plan) THEN RETURN FAILURE_WITH_LOG(\"invalid_plan\")\n10   data ← EXECUTE_GUARDED(plan.load_window)\n11   IF transient_io_error(data) THEN data ← RETRY_ONCE_GUARDED(same_parameters)\n12   IF failed(data) THEN RETURN FAILURE_WITH_LOG(data.error)\n13   quality, valid ← EXECUTE_GUARDED(plan.check_quality, data_reference)\n14   IF unit/time unresolved OR insufficient(valid) THEN RETURN QUALITY_REPORT(quality)\n15   result ← EXECUTE_GUARDED(plan.analyze_energy, valid, fixed_config)\n16   INSIDE analyze_energy:\n17       train, calibration, test ← FIXED_CHRONOLOGICAL_SPLIT(valid)\n18       ASSERT train ends before calibration, calibration before test, test ≤ replay_until\n19       FOR method IN [GLOBAL_MEDIAN, HOUR_OF_WEEK_MEDIAN]\n20           baseline ← FIT(method, train only)\n21           threshold ← QUANTILE(abs(calibration.value - PREDICT(baseline)), config.q)\n22           IF threshold = 0 THEN threshold ← VERIFIED_RESOLUTION_OR_FAIL()\n23           residual ← test.value - PREDICT(baseline); flags ← abs(residual) > threshold",
+        "size": 12,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "Pseudocode｜Algorithm 1（24–37）",
+    "source": "Input：問題、設定、重播截止時間；Output：可追溯報告／待補資訊／失敗紀錄",
+    "objects": [
+      {
+        "x": 38,
+        "y": 94,
+        "w": 886,
+        "h": 400,
+        "text": "24           events ← GROUP_CONSECUTIVE_SAME_DIRECTION(flags, sign(residual), break_on_missing = TRUE)\n25           REGISTER_NUMERIC_EVIDENCE(method, events, data.source_rows)\n26   IF failed(result) THEN RETURN FAILURE_WITH_LOG(result.error)\n27   eligible ← RULES_ALLOWED_BY(result.events, weather, schedule, timezone)\n28   next ← LLM_NEXT_STEP(plan, quality, result, eligible)\n29   IF invalid(next) THEN RETURN RESTRICTED_REPORT_WITH_LOG()\n30   IF next.tool = apply_domain_rules THEN rules ← EXECUTE_GUARDED(next)\n31   ELSE ASSERT next.tool = build_report; RECORD_SKIPPED_RULES(next.reason)\n32   evidence ← FREEZE(result, rules_if_any, quality, tool_log)\n33   report ← GUARDED_CALL(build_report, question, evidence)\n34   IF references_or_numbers_invalid(report) THEN report ← FIXED_TEMPLATE(evidence)\n35   SAVE(report, evidence, config, tool_log)\n36   RETURN report\n37 END PROCEDURE",
+        "size": 12,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "Experiments｜資料切分與分析 Baseline",
+    "source": "所有期間、門檻與件數為預定設定；合成擾動不等於真實故障標籤",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "最低版本：一棟建築、固定 12 週；8 週訓練 → 2 週校準 → 2 週測試。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 175.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "B0：訓練期全域中位數；B1：訓練期同星期／小時中位數。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 256.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "校準期絕對殘差第99百分位為暫定門檻；測試期禁止調參或重訓。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 337.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "比較 MAE、資料覆蓋率及警示事件；警示數量不等於偵測準確率。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 418.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "測試副本注入尖峰／持續增加／零值各10件；報命中率、漏失與延遲。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "Evaluation｜Agent 與公平比較",
+    "source": "固定案例與評分分母詳見 DESIGN.md",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "10個案例各執行3次：一般需求、資訊不足、資料缺漏、I/O失敗及無根據診斷要求。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 175.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "相同案例比較：固定Python報表、固定流程＋LLM、受限工具Agent。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 256.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "記錄共同資料、設定及提示詞；分開看數值分析與工具規劃的效果。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 337.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "指標：任務／工具成功率、事實可追溯率、正確停止率、預算遵守與無依據根因數。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 418.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "人工核對引用是否支持語意；同時記錄延遲與用量，不只看答案流暢度。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "可行性、預期成果與交付",
+    "source": "4週為未提供時程下的暫定規劃；模型與依賴版本於實作時鎖定",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "第1週：資料核對與品質；第2週：基準、殘差與事件分析。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 175.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "第3週：Agent、規則與證據報告；第4週：比較評估與展示。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 256.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "工具：Python、pandas、numpy、pydantic、單一LLM SDK；本機CSV／JSON。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 337.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "Expected Outcomes：可重現原型、可核對報告與真實比較結果；本階段尚未實驗。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 418.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "Proposal交付：提案、PPT、Repository、DESIGN.md。期末再完成系統與驗證。",
+        "size": 19,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
+    "title": "References｜原始來源",
+    "source": "查核日期：2026-11-03；完整可點擊網址及查核範圍見提案 References",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94,
+        "w": 876,
+        "h": 400,
+        "text": "[A1] Yao et al. (2023), ReAct. arxiv.org/html/2210.03629v3\n\n[A2] Gu et al. (2025), Argos. arxiv.org/html/2501.14170v1\n\n[A3] Yang et al. (2025), Refining Time Series Anomaly Detectors using LLMs. arxiv.org/html/2503.21833v1\n\n[A4] Mulayim et al. (2025), Extraction and Analysis of Time Series Data from BAS Using LLMs. DOI: 10.20357/B73W4C\n\n[A5] Yang et al. (2025), Time-RA. arxiv.org/html/2507.15066v1\n\n[D1] IEA (2026), Global Energy Review 2026 — Electricity demand.\n\n[D2] IEA (2026), Electricity 2026 — Demand.\n\n[D3] Miller et al. (2020), The Building Data Genome Project 2. DOI: 10.1038/s41597-020-00712-x\n\n[D4–D6] BUDS Lab, BDG2 repository, LICENSE, Meters data features.\n\n[D7] Kramer et al. (2020), Proving the Business Case for Building Analytics. LBNL.\n\n[D8] U.S. DOE FEMP, Measurement and Verification Options for Federal Energy- and Water-Saving Projects.",
+        "size": 12,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  }
+]

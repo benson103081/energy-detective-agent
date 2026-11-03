@@ -34,4 +34,3 @@ Proposal 文件可直接開啟，不需要安裝應用程式。系統尚在設�
 ## 階段狀態
 
 本 Repository 收錄 Proposal 文件、PPT 與 DESIGN.md。期末實作須另完成真實實驗、結果比較、結論、至少 21 頁 Final PPT，以及超過 10 分鐘的 YouTube 簡報與 Demo。
-
