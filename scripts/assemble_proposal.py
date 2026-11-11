@@ -14,6 +14,8 @@ def section(s,start,end=None):
 
 abstract='''# Energy Detective：建築用電異常調查 AI Agent
 ## Final Project Proposal
+組別：第25組
+
 課程：物聯網數據分析與應用｜階段：Proposal（占課程成績 10%）
 日期：2026-11-11
 
@@ -62,7 +64,7 @@ def two(title,left,right,source='',size=19):
     slides.append(dict(title=title,source=source,objects=[rect(42,98,430,390,left,size),rect(488,98,430,390,right,size)]))
 
 add('Energy Detective｜建築用電異常調查 AI Agent',[
-'物聯網數據分析與應用 · Final Project Proposal',
+'第25組｜物聯網數據分析與應用 · Final Project Proposal',
 '用公開電表與天氣資料，產出有依據的調查建議。',
 'AI Agent ＋ Domain Knowledge ＋ Data Analytics',
 '7114056008 侯如蓁　｜　7114056093 蔡奇勳\n7114056126 施秉榕　｜　7114056143 陳睿彪\n2026-11-11　｜　Proposal：系統與實驗尚未完成'],size=19)

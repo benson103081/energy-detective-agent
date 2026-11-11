@@ -1,5 +1,7 @@
 # Energy Detective：建築用電異常調查 AI Agent
 
+組別：第25組
+
 「物聯網數據分析與應用」期末專題提案。本階段交付研究、系統設計與簡報，系統程式與實驗尚未完成。
 
 Repository：<https://github.com/benson103081/energy-detective-agent>。

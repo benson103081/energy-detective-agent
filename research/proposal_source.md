@@ -1,5 +1,7 @@
 # Energy Detective：建築用電異常調查 AI Agent
 ## Final Project Proposal
+組別：第25組
+
 課程：物聯網數據分析與應用｜階段：Proposal（占課程成績 10%）
 日期：2026-11-11
 
