@@ -48,6 +48,37 @@ add('可行性、預期成果與交付',[
 '工具：Python、pandas、numpy、pydantic、單一LLM SDK；本機CSV／JSON。',
 'Expected Outcomes：可重現原型、可核對報告與真實比較結果；本階段尚未實驗。',
 'Proposal交付：提案、PPT、Repository、DESIGN.md。期末再完成系統與驗證。'],source='4週為未提供時程下的暫定規劃；模型與依賴版本於實作時鎖定')
+add('研究問題｜每項假設都可以被否證',[
+'RQ1：同星期／小時基準 B1 是否比全域中位數 B0 更符合保留期用電型態？',
+'RQ2：Agent 能否維持資訊完整與證據正確，同時省下不必要的規則評估？',
+'RQ3：錯 ID、錯值、錯單位、錯對象等主張，是否被驗證器拒絕或模板取代？',
+'若固定流程相同或較佳，就照實報告；不把文字流暢當成準確或節能。'],source='預定研究假設與驗收方式；沒有實驗結果')
+add('Scope｜最低版本與擴充範圍',[
+'必做：單棟 raw 資料、固定12週、B0/B1、事件、證據、十個案例。',
+'天氣：只作同時背景；不宣稱已完成天氣校正或排除空調因素。',
+'擴充：跨建築、cleaned敏感度、天氣預測模型、現場工單。',
+'不在本次最低版本：實體感測器、設備控制、故障確診與已實現節電。'],source='Proposal、DESIGN.md、實驗協議使用相同邊界')
+add('案例矩陣｜成功與正確停止都要驗證',[
+'C01–C03：偏高、連續零值、無警示；有證據才形成相應報告。',
+'C04–C06：缺建築、缺期間、用電不足；補問或停止，不猜資料。',
+'C07–C08：缺天氣仍分析用電；暫時 I/O 最多重試一次。',
+'C09–C10：非法工具／越界一律拒絕；無設備證據不確診空調。',
+'三組 × 十案例 × 三次＝90次；合成案例明確標示，保存失敗紀錄。'],source='每例的必要條件與分母見 research/evaluation_protocol.md',size=18)
+add('證據報告｜說明用合成例',[
+'假設：4小時各觀測180 kWh，歷史基準各120 kWh，門檻30 kWh。',
+'每點偏離60 kWh，超過門檻；合併事件的偏離總和為240 kWh。',
+'報告：需查排程、活動與設備狀態；不能宣稱空調故障或節省240 kWh。',
+'若中間一小時缺測：不補零、不跨缺口合併，重新計算有效事件。'],source='illustrative_only：教學假設，非 BDG2 實測結果')
+add('人工審閱｜避免只有引用卻沒有支持',[
+'兩人獨立審閱匿名報告；先保存分歧，再討論共同判定。',
+'逐項核對數值、單位、建築、期間、語意，不能只檢查證據 ID 存在。',
+'完整度與追溯率一起看；沒有事實的空報告不能拿100%。',
+'原始草稿與模板補救後結果分開；三次重跑不當成三個獨立使用者。'],source='未安排兩位審閱者時明示限制；學生審閱不等於故障真值')
+add('Final Handover｜從設計到可交接',[
+'現在：Proposal文件、簡報、DESIGN、評估協議及可重建文件流程。',
+'期末：可執行Agent、資料版本與授權、測試、實驗結果、比較與結論。',
+'Final PPT超過20頁；YouTube簡報與Demo超過10分鐘。',
+'組員已依學號列於封面；繳交前確認分工，重跑README步驟。'],source='完整作業對照見 docs/acceptance.md')
 refs=[
 '[A1] Yao et al. (2023), ReAct. arxiv.org/html/2210.03629v3',
 '[A2] Gu et al. (2025), Argos. arxiv.org/html/2501.14170v1',
@@ -59,8 +90,10 @@ refs=[
 '[D3] Miller et al. (2020), The Building Data Genome Project 2. DOI: 10.1038/s41597-020-00712-x',
 '[D4–D6] BUDS Lab, BDG2 repository, LICENSE, Meters data features.',
 '[D7] Kramer et al. (2020), Proving the Business Case for Building Analytics. LBNL.',
-'[D8] U.S. DOE FEMP, Measurement and Verification Options for Federal Energy- and Water-Saving Projects.'
+'[D8] U.S. DOE FEMP, Measurement and Verification Options for Federal Energy- and Water-Saving Projects.',
+'[D9] Park et al. (2025), Probabilistic Forecasting for Building Energy Systems using TSFMs. arxiv.org/html/2506.00630v1'
 ]
-slides.append(dict(title='References｜原始來源',source='查核日期：2026-11-03；完整可點擊網址及查核範圍見提案 References',objects=[rect(42,94,876,400,'\n\n'.join(refs),12)]))
+for start in range(0,len(refs),6):
+    slides.append(dict(title=f'References｜原始來源 {start//6+1}',source='新增來源及核心資料說明查核：2026-11-11；完整連結見 Proposal References',objects=[rect(42,94,876,400,'\n\n'.join(refs[start:start+6]),16)]))
 (ROOT/'scripts/slides.json').write_text(json.dumps(slides,ensure_ascii=False,indent=2),encoding='utf-8')
 print('Final slide count:',len(slides))
