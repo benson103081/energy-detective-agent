@@ -78,7 +78,7 @@ add('Final Handover｜從設計到可交接',[
 '現在：Proposal文件、簡報、DESIGN、評估協議及可重建文件流程。',
 '期末：可執行Agent、資料版本與授權、測試、實驗結果、比較與結論。',
 'Final PPT超過20頁；YouTube簡報與Demo超過10分鐘。',
-'繳交前填姓名／學號與分工，重跑README步驟，確認其他人能接手。'],source='完整作業對照見 docs/acceptance.md')
+'組員已依學號列於封面；繳交前確認分工，重跑README步驟。'],source='完整作業對照見 docs/acceptance.md')
 refs=[
 '[A1] Yao et al. (2023), ReAct. arxiv.org/html/2210.03629v3',
 '[A2] Gu et al. (2025), Argos. arxiv.org/html/2501.14170v1',

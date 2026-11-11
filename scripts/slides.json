@@ -8,7 +8,7 @@
         "w": 876,
         "h": 84,
         "text": "物聯網數據分析與應用 · Final Project Proposal",
-        "size": 23,
+        "size": 19,
         "fill": "FFFFFF",
         "color": "172D43",
         "line": null
@@ -19,7 +19,7 @@
         "w": 876,
         "h": 84,
         "text": "用公開電表與天氣資料，產出有依據的調查建議。",
-        "size": 23,
+        "size": 19,
         "fill": "FFFFFF",
         "color": "172D43",
         "line": null
@@ -30,7 +30,7 @@
         "w": 876,
         "h": 84,
         "text": "AI Agent ＋ Domain Knowledge ＋ Data Analytics",
-        "size": 23,
+        "size": 19,
         "fill": "FFFFFF",
         "color": "172D43",
         "line": null
@@ -40,8 +40,8 @@
         "y": 376,
         "w": 876,
         "h": 84,
-        "text": "組員／學號：繳交前填入　｜　2026-11-11\nProposal 階段：系統與實驗尚未完成",
-        "size": 23,
+        "text": "7114056008 侯如蓁　｜　7114056093 蔡奇勳\n7114056126 施秉榕　｜　7114056143 陳睿彪\n2026-11-11　｜　Proposal：系統與實驗尚未完成",
+        "size": 19,
         "fill": "FFFFFF",
         "color": "172D43",
         "line": null
@@ -2729,7 +2729,7 @@
         "y": 397.75,
         "w": 876,
         "h": 91.25,
-        "text": "繳交前填姓名／學號與分工，重跑README步驟，確認其他人能接手。",
+        "text": "組員已依學號列於封面；繳交前確認分工，重跑README步驟。",
         "size": 19,
         "fill": "FFFFFF",
         "color": "172D43",

@@ -15,7 +15,16 @@ def section(s,start,end=None):
 abstract='''# Energy Detective：建築用電異常調查 AI Agent
 ## Final Project Proposal
 課程：物聯網數據分析與應用｜階段：Proposal（占課程成績 10%）
-組員／學號：繳交前填入｜日期：2026-11-11
+日期：2026-11-11
+
+組員（依學號排序）：
+
+| 學號 | 姓名 |
+|---|---|
+| 7114056008 | 侯如蓁 |
+| 7114056093 | 蔡奇勳 |
+| 7114056126 | 施秉榕 |
+| 7114056143 | 陳睿彪 |
 
 ## 1. Abstract 摘要
 ### A. Attention Getter — Motivation
@@ -56,7 +65,7 @@ add('Energy Detective｜建築用電異常調查 AI Agent',[
 '物聯網數據分析與應用 · Final Project Proposal',
 '用公開電表與天氣資料，產出有依據的調查建議。',
 'AI Agent ＋ Domain Knowledge ＋ Data Analytics',
-'組員／學號：繳交前填入　｜　2026-11-11\nProposal 階段：系統與實驗尚未完成'],size=23)
+'7114056008 侯如蓁　｜　7114056093 蔡奇勳\n7114056126 施秉榕　｜　7114056143 陳睿彪\n2026-11-11　｜　Proposal：系統與實驗尚未完成'],size=19)
 add('研究動機｜為什麼值得做？',[
 '2025 年全球用電需求約增 3%；建築占當年用電增量近 45%。',
 '設施管理者需要從「曲線變高」判斷：要先查資料、天氣或營運排程？',

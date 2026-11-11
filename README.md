@@ -2,7 +2,16 @@
 
 「物聯網數據分析與應用」期末專題提案。本階段交付研究、系統設計與簡報，系統程式與實驗尚未完成。
 
-Repository：<https://github.com/benson103081/energy-detective-agent>。組員與學號將於繳交前補上。
+Repository：<https://github.com/benson103081/energy-detective-agent>。
+
+## 組員（依學號排序）
+
+| 學號 | 姓名 |
+|---|---|
+| 7114056008 | 侯如蓁 |
+| 7114056093 | 蔡奇勳 |
+| 7114056126 | 施秉榕 |
+| 7114056143 | 陳睿彪 |
 
 ## 提案交付
 
