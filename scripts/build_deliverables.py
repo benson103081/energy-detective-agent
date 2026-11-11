@@ -1,8 +1,9 @@
 """Build proposal DOCX/HTML and editable PPTX plus a PDF preview, without Office."""
 from pathlib import Path
-import re, json, html, zipfile
+import re, json, html, zipfile, os
 from xml.sax.saxutils import escape as X
 import fitz
+import markdown
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'deliverables'; OUT.mkdir(exist_ok=True)
@@ -30,6 +31,9 @@ PNS=f'xmlns:a="{NS}/drawingml/2006/main" xmlns:r="{NS}/officeDocument/2006/relat
 
 def deck(slides):
     pdf=fitz.open(); overflows=[]
+    # Optional local font; default works on Windows, macOS and Linux without Office.
+    font_path = os.environ.get('ENERGY_DOC_FONT')
+    pdf_font = fitz.Font(fontfile=font_path) if font_path else fitz.Font('cjk')
     with zipfile.ZipFile(OUT/'Proposal.pptx','w',zipfile.ZIP_DEFLATED) as z:
         overrides=[('/ppt/presentation.xml','presentationml.presentation.main'),('/ppt/slideMasters/slideMaster1.xml','presentationml.slideMaster'),('/ppt/slideLayouts/slideLayout1.xml','presentationml.slideLayout'),('/ppt/theme/theme1.xml','theme')]
         overrides += [(f'/ppt/slides/slide{i}.xml','presentationml.slide') for i in range(1,len(slides)+1)]
@@ -55,7 +59,7 @@ def deck(slides):
                 rgb=lambda c: tuple(int(c[k:k+2],16)/255 for k in (0,2,4))
                 if o['fill'] or o['line']: page.draw_rect(rr,color=rgb(o['line']) if o['line'] else None,fill=rgb(o['fill']) if o['fill'] else None)
                 if o['text']:
-                    page.insert_font(fontname='mj',fontfile='C:/Windows/Fonts/msjh.ttc')
+                    page.insert_font(fontname='mj',fontbuffer=pdf_font.buffer)
                     inset=(0,0,0,0) if o['text'] in ['→','↓','←'] else (6,4,-6,-4)
                     avail=page.insert_textbox(rr+inset,o['text'],fontname='mj',fontsize=o['size'],color=rgb(o['color']),lineheight=1.15)
                     if avail<0: overflows.append((i,o['text'][:45],avail))
@@ -83,7 +87,7 @@ def blocks(md):
         elif t.startswith('|'):
             rows=[]
             while i<len(lines) and lines[i].startswith('|'):
-                cells=[clean(re.sub(r'\[([^\]]+)\]\(([^)]+)\)',r'\1',x.strip())) for x in lines[i].strip('|').split('|')]
+                cells=[clean(x.strip()) for x in lines[i].strip('|').split('|')]
                 if not all(re.fullmatch(r'[:\- ]+',c) for c in cells): rows.append(cells)
                 i+=1
             yield ('table',rows); continue
@@ -93,6 +97,10 @@ def blocks(md):
         i+=1
 
 def document(md):
+    # Resolve reference links for Word, retaining full URLs in the exported document.
+    references=dict(re.findall(r'^\[([^\]]+)\]:\s*(\S+)\s*$',md,re.M))
+    md=re.sub(r'^\[[^\]]+\]:\s*\S+\s*$', '', md, flags=re.M)
+    md=re.sub(r'\[([^\]]+)\]\[([^\]]+)\]',lambda m: '['+m[1]+']('+references.get(m[2],m[2])+')',md)
     body=[]; web=[]; imgs=[]; diagram_count=0
     def para(t,size=22,bold=False):
         return '<w:p><w:pPr><w:spacing w:after="100"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:eastAsia="Microsoft JhengHei"/><w:sz w:val="'+str(size)+'"/>'+('<w:b/>' if bold else '')+'</w:rPr><w:t xml:space="preserve">'+X(t)+'</w:t></w:r></w:p>'
@@ -112,7 +120,12 @@ def document(md):
             for line in b[2].splitlines(): body.append(para(line,18))
             web.append('<pre>'+html.escape(b[2])+'</pre>')
     css='body{font:15px/1.75 "Microsoft JhengHei",sans-serif;max-width:1100px;margin:40px auto;color:#172d43;padding:0 24px}h1,h2,h3{color:#087e8b}table{border-collapse:collapse;width:100%;font-size:12px;margin:16px 0}td,th{border:1px solid #cbd5e1;padding:7px;vertical-align:top;overflow-wrap:anywhere}th{background:#e6f1f2}pre{white-space:pre-wrap;background:#f3f6fa;padding:16px}img{width:100%}p{overflow-wrap:anywhere}@media print{body{margin:0;font-size:11pt}h2,h3{break-after:avoid}tr,img{break-inside:avoid}}'
-    (OUT/'Proposal.html').write_text('<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><title>Energy Detective 專題提案</title><style>'+css+'</style><body>'+''.join(web)+'</body></html>',encoding='utf-8')
+    # Use proper Markdown rendering for lists, links, tables and source references.
+    html_md=md
+    for diagram in ['architecture','flowchart']:
+        html_md=re.sub(r'```mermaid\n.*?\n```',f'![{diagram}](../assets/{diagram}.png)',html_md,count=1,flags=re.S)
+    rendered=markdown.markdown(html_md,extensions=['tables','fenced_code'])
+    (OUT/'Proposal.html').write_text('<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Energy Detective 專題提案</title><style>'+css+'</style></head><body>'+rendered+'</body></html>',encoding='utf-8')
     with zipfile.ZipFile(OUT/'Proposal.docx','w',zipfile.ZIP_DEFLATED) as z:
         z.writestr('[Content_Types].xml','<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>')
         z.writestr('_rels/.rels',rels([(1,'officeDocument','word/document.xml')]))

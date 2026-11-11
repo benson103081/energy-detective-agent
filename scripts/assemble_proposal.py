@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 domain=(ROOT/'research/domain_research.md').read_text(encoding='utf-8')
 ai=(ROOT/'research/ai_research.md').read_text(encoding='utf-8')
 design=(ROOT/'research/proposed_scheme.md').read_text(encoding='utf-8')
+protocol=(ROOT/'research/evaluation_protocol.md').read_text(encoding='utf-8')
 
 def section(s,start,end=None):
     out=s.split(start,1)[1]
@@ -14,7 +15,7 @@ def section(s,start,end=None):
 abstract='''# Energy Detective：建築用電異常調查 AI Agent
 ## Final Project Proposal
 課程：物聯網數據分析與應用｜階段：Proposal（占課程成績 10%）
-組員／學號：繳交前填入｜日期：2026-11-03
+組員／學號：繳交前填入｜日期：2026-11-11
 
 ## 1. Abstract 摘要
 ### A. Attention Getter — Motivation
@@ -39,7 +40,7 @@ ai_body=ai_body.replace('## Article Summary Table','### AI Article Summary Table
 deep=section(domain,'## Deep Research：五項核心思維','## Related Work：領域 Article Summary Table')
 deep='### Q1. 五個核心思維模式\n\n'+deep.replace('## Deep Research：三項關鍵爭論','### Q2. 三個重要專業爭論').replace('## Deep Research：十個深度研究問題','### Q3. 十個深度理解問題')
 references=section(domain,'## 來源索引')+'\n\n'+section(ai,'## 原始來源與查核範圍').split('本次亦搜尋')[0]
-proposal=abstract+intro+'\n\n## 3. Related Work 相關研究\n\n本章以五篇 AI 研究及四份領域研究／指南對照，兼顧 AI Technology 與 Domain Know-how。\n\n'+ai_body+'\n\n### 領域 Article Summary Table\n\n'+domain_table+'\n\n## 4. Deep Research\n\n'+deep+'\n\n## 5. Proposed Scheme / Proposed Design\n\n'+re.sub(r'^# .*\n','',design,count=1)+'\n\n### 資料來源與授權\n\n'+section(domain,'## 資料使用與授權查核','## 來源索引')+'\n\n## 6. References\n\n'+references
+proposal=abstract+intro+'\n\n## 3. Related Work 相關研究\n\n本章以五篇 AI 研究及五份領域研究／報告對照，兼顧 AI Technology 與 Domain Know-how。\n\n'+ai_body+'\n\n### 領域 Article Summary Table\n\n'+domain_table+'\n\n## 4. Deep Research\n\n'+deep+'\n\n## 5. Proposed Scheme / Proposed Design\n\n'+re.sub(r'^# .*\n','',design,count=1)+'\n\n'+re.sub(r'^# .*\n','',protocol,count=1)+'\n\n### 資料來源與授權\n\n'+section(domain,'## 資料使用與授權查核','## 來源索引')+'\n\n## 6. References\n\n'+references
 (ROOT/'research/proposal_source.md').write_text(proposal,encoding='utf-8')
 
 slides=[]
@@ -55,7 +56,7 @@ add('Energy Detective｜建築用電異常調查 AI Agent',[
 '物聯網數據分析與應用 · Final Project Proposal',
 '用公開電表與天氣資料，產出有依據的調查建議。',
 'AI Agent ＋ Domain Knowledge ＋ Data Analytics',
-'組員／學號：繳交前填入　｜　2026-11-03\nProposal 階段：系統與實驗尚未完成'],size=23)
+'組員／學號：繳交前填入　｜　2026-11-11\nProposal 階段：系統與實驗尚未完成'],size=23)
 add('研究動機｜為什麼值得做？',[
 '2025 年全球用電需求約增 3%；建築占當年用電增量近 45%。',
 '設施管理者需要從「曲線變高」判斷：要先查資料、天氣或營運排程？',
@@ -64,17 +65,17 @@ add('研究動機｜為什麼值得做？',[
 two('問題定義與專題範圍','使用情境\n\n使用者：校園／辦公建築設施管理者。\n\n輸入：建築 ID、期間與調查問題。\n\n輸出：異常事件、比較基準、證據、替代解釋與查核建議。','主要限制\n\n資料缺漏與尖峰未必是設備故障。\n\n夜間不一定無人使用。\n\n歷史偏離量不等於已實現節電。\n\nMVP：公開資料歷史重播；不接控制設備。',source='[D3][D6][D8]')
 
 def table_slide(title,rows,source):
-    # Eight required fields; short values preserve legibility, full table in document.
-    widths=[55,58,130,140,110,112,147,124]
+    widths=[48,52,115,127,115,112,165,142]
     heads=['Ref.','Year','Problem','AI Method','Domain','Dataset','Findings','Limitation']
-    objects=[]; yy=94
-    for j,row in enumerate([heads]+rows):
-        xx=42; hh=38 if j==0 else 73
-        for ww,txt in zip(widths,row):
-            objects.append(rect(xx,yy,ww,hh,txt,10.5 if j else 11,fill='DCEDEE' if j==0 else 'FFFFFF',line='CAD7DE'))
-            xx+=ww
-        yy+=hh
-    slides.append(dict(title=title,objects=objects,source=source))
+    for start in range(0,len(rows),3):
+        objects=[]; yy=94
+        for j,row in enumerate([heads]+rows[start:start+3]):
+            xx=42; hh=40 if j==0 else 110
+            for ww,txt in zip(widths,row):
+                objects.append(rect(xx,yy,ww,hh,txt,13 if j else 12,fill='DCEDEE' if j==0 else 'FFFFFF',line='CAD7DE'))
+                xx+=ww
+            yy+=hh
+        slides.append(dict(title=title+f' {start//3+1}',objects=objects,source=source))
 table_slide('Related Work｜AI Technology（完整表見提案）',[
 ['A1','2023','工具取得外部事實','ReAct\n推理＋動作','動作與觀察','QA／互動任務','多類任務有工具互動效益','可能重複動作；非建築'],
 ['A2','2025','可解釋異常偵測','Argos\n規則＋基礎模型','標註異常模式','KPI／Yahoo等','融合規則在文中比較中改善','依賴標註；非建築'],
@@ -85,7 +86,8 @@ table_slide('Related Work｜Domain Know-how',[
 ['D1','2026','需求為何成長','N/A\n統計分析','部門、天氣','2025全球統計','建築占新增用電近45%','不能推定單棟浪費'],
 ['D3','2020','公開建築基準','資料品質篩查','總表、場址、天氣','BDG2','1636建築、3053各類表','缺少設備根因標籤'],
 ['D7','2020','分析的實務價值','多種EIS／FDD','監測與營運改善','104組織、6500建築','EIS/FDD節能中位3%/9%','不可外推本專題'],
-['D8','未標年','如何驗證節能','N/A\n量測／回歸','基準與量測邊界','DOE指南','定義A–D量測驗證選項','非異常偵測實驗']], '[D1][D3][D7][D8]；網頁查核 2026-11-03')
+['D9','2025','建築模型適應','Chronos／LoRA','占用、負載、季節','SUSTIE','長上下文與微調影響表現','同棟；非故障驗證'],
+['D8','未標年','如何驗證節能','N/A\n量測／回歸','基準與量測邊界','DOE指南','定義A–D量測驗證選項','非異常偵測實驗']], '[D1][D3][D7][D8][D9]；網頁查核 2026-11-11')
 add('Research Gap → Our Project',[
 'Existing Research：工具 Agent、建築查詢、異常偵測及文字解釋已有先例。',
 'Limitations：資料品質、數值引用、條件假設與根因邊界仍須逐案檢查。',
@@ -97,8 +99,8 @@ add('Deep Research Q1｜五個核心思維',[
 '② 先查資料品質 → 保留 raw 與品質旗標，避免把缺值當故障。[D6]',
 '③ 統計偏離不等於根因 → 區分觀察、假說與還缺的現場證據。[D8]',
 '④ 分析要能支援行動 → 合併事件，列優先調查事項與可核對證據。[D7]',
-'⑤ 公開基準不保證泛化 → 時間切分並檢查不同建築的表現。[D3]'],size=18)
-two('Deep Research Q2｜三項專業取捨','1. 積極清理 ↔ 保留可疑讀值\n雙方依據：cleaned減少污染，但也移除離群與零值。[D6]\n共同原則：保留版本及品質旗標。\n未解：沒有現場紀錄時如何區分真異常？\n\n2. 共通模型 ↔ 逐棟模型\n依據：多建築可共享資訊，但用途／氣候不同。[D3][D4][D8]\n共同原則：分建築檢驗。\n未解：何時需要本地校正？','3. 直接量化節電 ↔ 保留待查機會\n\n量化依據：實務分析支援營運改善。[D7]\n保留依據：節電需要介入後量測與調整基準。[D8]\n\n共同原則：區分偏離、機會與實際節電。\n未解：多少異常負載可不影響服務而消除？\n\n本專題：只報相對基準偏離量。',size=16)
+'⑤ 公開基準不保證泛化 → 最低版本按時間切分；跨建築為擴充。[D3]'],size=18)
+two('Deep Research Q2｜三項專業取捨','1. 積極清理 ↔ 保留可疑讀值\n雙方依據：cleaned減少污染，但也移除離群與零值。[D6]\n共同原則：保留版本及品質旗標。\n未解：沒有現場紀錄時如何區分真異常？\n\n2. 零樣本模型 ↔ 本地調整\n依據：長上下文可改善零樣本；本地微調也有幫助。[D9]\n共同原則：同條件比較效果與成本。\n未解：多少資料值得調整？','3. 快速篩選機會 ↔ 完成節能驗證\n\n量化依據：實務分析支援營運改善。[D7]\n保留依據：節電需要介入後量測與調整基準。[D8]\n\n共同原則：區分偏離、機會與實際節電。\n未解：多少異常負載可不影響服務而消除？\n\n本專題：只報相對基準偏離量。',size=16)
 two('Deep Research Q3｜十個深度理解問題','01 缺少故障標籤，如何評估事件？\n\n02 天氣與季節改變後，異常還成立嗎？\n\n03 raw／cleaned 會如何改變結論？\n\n04 如何區分停館、缺值與量測故障？\n\n05 何時應停止推論並要求補證據？','06 何時需逐棟／跨建築參照？\n\n07 工具證據是否真正支持文字主張？\n\n08 告警合併如何影響召回與查核負擔？\n\n09 Agent 增益來自規劃、規則或表達？\n\n10 確認根因與節電還需要哪些證據？',size=18)
 add('Agent 使用情境｜從提問到調查',[
 '使用者：「請調查指定建築在測試期間的夜間用電是否異常。」',
@@ -121,7 +123,7 @@ add('資料來源與前處理',[
 'BDG2：2016–2017 每小時；1,636 建築、3,053 各類表；只取電力子集。',
 '電表 raw/electricity.csv＋weather/weather.csv＋metadata/metadata.csv。',
 '電量 kWh；依場址與時間對齊。檢查缺值、重複、零值及時間順序。',
-'raw 也經初步整理；cleaned 已移除部分離群／零值，僅作敏感度比較。',
+'raw 也經初步整理；cleaned 已移除部分離群／零值，其敏感度比較列為擴充。',
 '沒有已確認故障根因標籤；固定時間切分、保留資料版本及授權。'],source='[D3]–[D6]；完整資料路徑見提案',size=19)
 two('AI / Analytics / Domain Knowledge','Python：數值分析\n\n品質檢查、條件基準、殘差、事件合併。\n\nLLM：受限工具選擇\n\n輸出結構化任務，只能呼叫已定義工具；不執行任意生成程式。\n\n所有數值由工具結果帶入。','Domain Knowledge：明示規則\n\n同類日／時段才比較。\n夜間不直接等於非營運。\n資料異常先分流。\n總表結論不得超出量測範圍。\n\nReport：觀察→基準→假說→缺少證據→下一步。',source='[A1][A4]；[D6][D8]',size=18)
 
