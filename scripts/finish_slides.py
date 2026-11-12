@@ -79,6 +79,15 @@ add('Final Handover｜從設計到可交接',[
 '期末：可執行Agent、資料版本與授權、測試、實驗結果、比較與結論。',
 'Final PPT超過20頁；YouTube簡報與Demo超過10分鐘。',
 '組員已依學號列於封面；繳交前確認分工，重跑README步驟。'],source='完整作業對照見 docs/acceptance.md')
+
+# DIC3 extends the existing 29-slide proposal rather than replacing its content.
+add('DIC3｜提案重構與 OpenSpec 工作流程',[
+'摘要 A–F；Introduction G–L；Related Work M–O。',
+'五個核心思維、三項取捨、十個深度問題保留，連結到系統設計。',
+'proposal → specs＋design → tasks → 後續實作 → 驗證 → 封存。',
+'規格涵蓋需求補問、資料品質、時間切分、工具限制、證據及推論邊界。',
+'目前完成文件與規格；Agent程式與實驗待完成，變更保持未封存。'],source='OpenSpec 2.0.0；openspec/changes/energy-investigation-workflow/',size=18)
+
 refs=[
 '[A1] Yao et al. (2023), ReAct. arxiv.org/html/2210.03629v3',
 '[A2] Gu et al. (2025), Argos. arxiv.org/html/2501.14170v1',

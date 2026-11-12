@@ -2738,6 +2738,67 @@
     ]
   },
   {
+    "title": "DIC3｜提案重構與 OpenSpec 工作流程",
+    "source": "OpenSpec 2.0.0；openspec/changes/energy-investigation-workflow/",
+    "objects": [
+      {
+        "x": 42,
+        "y": 94.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "摘要 A–F；Introduction G–L；Related Work M–O。",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 175.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "五個核心思維、三項取捨、十個深度問題保留，連結到系統設計。",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 256.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "proposal → specs＋design → tasks → 後續實作 → 驗證 → 封存。",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 337.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "規格涵蓋需求補問、資料品質、時間切分、工具限制、證據及推論邊界。",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      },
+      {
+        "x": 42,
+        "y": 418.0,
+        "w": 876,
+        "h": 71.0,
+        "text": "目前完成文件與規格；Agent程式與實驗待完成，變更保持未封存。",
+        "size": 18,
+        "fill": "FFFFFF",
+        "color": "172D43",
+        "line": null
+      }
+    ]
+  },
+  {
     "title": "References｜原始來源 1",
     "source": "新增來源及核心資料說明查核：2026-11-11；完整連結見 Proposal References",
     "objects": [
