@@ -317,3 +317,19 @@ python -m src.evaluate --config config/experiment.json
 研究問題、選樣、指標分母、十個案例、三組公平比較、人工審閱及結果表見 [實驗協議](research/evaluation_protocol.md)。原始資料無故障真值，因此不報真實故障 precision/recall；最低版本也不宣稱天氣校正或跨建築效能。
 
 作業逐項對照與 Final Handover 待完成項目見 [交付核對](docs/acceptance.md)。完成文件不代表 Agent 程式、實驗、Final PPT 或 YouTube Demo 已完成。
+
+## DIC3：OpenSpec 對照
+
+本次將預定設計轉為 [OpenSpec 變更](openspec/changes/energy-investigation-workflow/proposal.md)。文件與驗收規格已建立，系統程式仍未實作。
+
+| DESIGN.md 主題 | OpenSpec Requirement |
+|---|---|
+| Requirements／需求解析 | Request scope、Replay boundary |
+| Data Flow／品質與失敗 | Quality gate |
+| Algorithm／時間切分及事件 | Temporal evaluation、Deterministic analytics |
+| AI Model／受限工具 | Tool control |
+| Domain Knowledge | Conditional domain rules、Inference boundary |
+| Output／數值與引用 | Evidence report |
+| Results／預定評估 | Comparable evaluation |
+
+工作流程：proposal → specs 與 design → tasks → 後續實作 → 驗證 → 封存。各項 SHALL 需求的驗收案例見 `openspec/changes/energy-investigation-workflow/specs/energy-investigation/spec.md`。

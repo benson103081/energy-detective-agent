@@ -1,8 +1,8 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Energy Detective 專題提案</title><style>body{font:15px/1.75 "Microsoft JhengHei",sans-serif;max-width:1100px;margin:40px auto;color:#172d43;padding:0 24px}h1,h2,h3{color:#087e8b}table{border-collapse:collapse;width:100%;font-size:12px;margin:16px 0}td,th{border:1px solid #cbd5e1;padding:7px;vertical-align:top;overflow-wrap:anywhere}th{background:#e6f1f2}pre{white-space:pre-wrap;background:#f3f6fa;padding:16px}img{width:100%}p{overflow-wrap:anywhere}@media print{body{margin:0;font-size:11pt}h2,h3{break-after:avoid}tr,img{break-inside:avoid}}</style></head><body><h1>Energy Detective：建築用電異常調查 AI Agent</h1>
-<h2>Final Project Proposal</h2>
+<h2>DIC3 Project Proposal Refactor using OpenSpec</h2>
 <p>組別：第25組</p>
 <p>課程：物聯網數據分析與應用｜階段：Proposal（占課程成績 10%）
-日期：2026-11-11</p>
+日期：2026-11-12</p>
 <p>組員（依學號排序）：</p>
 <table>
 <thead>
@@ -44,34 +44,42 @@
 <h3>F. Findings — Expected Outcomes</h3>
 <p>預期完成可重現的資料調查原型與附證據報告，並透過比較實驗確認 Agent 是否有助於調查完整度及限制過度推論。本階段尚未執行實驗；不宣稱提高準確率、證實設備故障或達成節電。</p>
 <h2>2. Introduction 緒論</h2>
-<h3>A. Attention Getter：公開證據與研究動機</h3>
+<h3>G. General：領域現況與研究動機</h3>
 <p>IEA《Global Energy Review 2026》估計，2025 年全球用電需求增加約 3%，建築部門占當年全球用電<strong>增量近 45%</strong>。這個比例是增量占比，不能解讀成建築占全球用電總量 45%。[D1] IEA《Electricity 2026》進一步預測，建築部門將占 2025–2030 年新增用電需求的 49%；這是預測，不能當成已發生的結果。[D2]</p>
 <p>用電需求成長使建築營運分析更具重要性，但上述全球統計不能證明任何單棟建築正在浪費能源。本專題因此聚焦較可驗證的問題：能否用既有電表與天氣資料，產生值得管理者追查、且能回到資料核對的異常調查建議？</p>
-<h3>B. Background：領域、使用者與技術</h3>
+<h3>G. General（續）：領域、使用者與技術</h3>
 <p>目標使用者設定為校園／辦公建築的設施管理者與能源管理人員；這是本專題的使用情境設定，尚未經使用者訪談驗證。能源管理資訊系統（EMIS）將量測資料整理成營運資訊；故障偵測與診斷（FDD）則通常需要設備或系統運轉證據。LBNL 的 Smart Energy Analytics Campaign 報告涵蓋 104 個組織、6,500 棟建築，說明資料整理、分析與改善流程具有實務價值。[D7]</p>
 <p>本專題採用 Building Data Genome 2（BDG2）。原始資料來自北美與歐洲 19 個場址，涵蓋 1,636 棟非住宅建築、3,053 個各類計量表、2016–2017 年每小時資料，另附建築中繼資料與天氣資料。3,053 是各類計量表總數，不能稱為 3,053 個電表。[D3] 本專題只選電力資料，以自然語言提問啟動資料查詢、數值分析及建議整理；LLM 不直接取代數值計算。</p>
-<h3>C. Problem：待解決問題</h3>
+<h3>H. However：待解決問題</h3>
 <p>管理者看到「週末用電變高」時，仍需判斷比較期間是否合理、氣溫是否不同、資料是否缺漏，以及下一步應查營運排程還是電表。由圖表或異常分數走到可執行的調查，存在一段需要領域判讀的工作。</p>
 <p>本研究問題設定為：<strong>在只有建築總表、天氣與有限建築資訊的情況下，結合分析工具、明示規則與 LLM，是否能比固定報表或固定流程搭配 LLM，產生數值正確、證據完整且不過度推論的調查建議？</strong>這是待驗證假設，不預先宣稱 AI Agent 優於既有方法。</p>
-<h3>D. Existing Limitations：現有方法與資料的限制</h3>
+<h3>H. However（續）：現有方法與資料的限制</h3>
 <ol>
 <li><strong>相同高耗電可能有不同解釋。</strong>天氣、使用人數和營運條件會影響比較基準；DOE 的整棟建築量測與驗證方法也要求考慮這些變動。[D8] 因此，單一固定門檻不足以支持設備根因判斷。</li>
 <li><strong>資料清理會改變研究對象。</strong>BDG2 的 raw 已經過初步整理；cleaned 又將偵測出的離群值、特定連續零值與電力零值替換為缺值。<a href="https://github.com/buds-lab/building-data-genome-project-2/wiki/Meters-data-features">D3</a> 若直接在 cleaned 上研究異常，部分欲偵測的現象可能已被移除。</li>
 <li><strong>公開總表沒有充分的現場答案。</strong>BDG2 可供能源分析與異常研究，但不能把統計偏離自動當成經維修確認的設備故障。本專題不假定具有真實故障根因標籤；採人工審閱和明確標示的合成事件分別評估。</li>
 <li><strong>異常電量不等於可實現節電。</strong>實際節電需要改善前後的量測與合理基準。整棟建築層級驗證也不能分別確認每項改善措施的效果。[D8] 本專題無介入施工或運轉控制，因此不報告實現節電率。</li>
 </ol>
-<h3>E. Innovation：本專題擬議創新</h3>
+<h3>I. In literature：方法演進</h3>
+<p>既有方法可由統計基準、條件式能源分析，延伸到工具支援的語言模型。BDG2 提供多建築時序的共同資料基礎；EMIS／FDD 研究則將分析置於持續監測與營運改善流程。<a href="https://bies.lbl.gov/publications/proving-business-case-building">D3</a> 本提案第三章另以 ReAct、時序異常研究及建築資料查詢 Agent，整理 AI 工具使用的發展與限制。[A1]–[A5]</p>
+<h3>J. Judgement：方法優缺點與採用依據</h3>
+<p>統計基準易重現且成本低，但不能由偏離量直接判定設備根因。領域規則可明示比較條件，卻依賴作息、時區及資料品質。工具 Agent 能依觀察選擇查核步驟，但仍可能選錯工具或引用錯誤。因此，保留統計基準作為數值核心，將 Agent 的價值限定為調查完整度與證據組織，並以固定流程作公平比較；不預設 Agent 一定較佳。[D3]、[D8]、<a href="https://arxiv.org/html/2210.03629v3">A1</a>、<a href="https://eta.lbl.gov/publications/extraction-and-analysis-time-series">A4</a>。</p>
+<h3>K. Keypoint：本專題設計精神</h3>
 <p>創新定位為「可追溯的調查流程」，不宣稱發明新的異常偵測演算法或全球首創。Agent 依提問選擇資料品質檢查、同時段比較、天氣背景規則與事件摘要等工具（最低版本不以天氣擬合預測基準）；數值由程式產生，LLM 將結果連結到適用的領域規則。</p>
 <p>每則建議固定包含「觀察事實 → 比較基準 → 可能解釋 → 尚缺證據 → 下一步查核」，並附資料期間、工具結果識別碼與規則來源。例如，只有在標示營運時段假設後，才把夜間負載上升列為排程查核線索；無法確認營運時段時，應先要求查閱排程紀錄。規則是可撤回的調查假設，不是故障定論。</p>
-<h3>F. Contributions：預期貢獻</h3>
+<h3>K. Keypoint（續）：預期貢獻</h3>
 <ul>
 <li>一個以公開歷史電表資料重播的建築用電調查原型，驗證工具使用與調查流程的可行性。</li>
 <li>一套保留品質旗標、來源與假設的證據格式，讓管理者能核對每個數字和建議。</li>
 <li>一項比較固定報表、固定流程搭配 LLM 與工具支援 Agent 的評估，分開檢查事件偵測、數值正確性、證據覆蓋與過度推論；是否改善須由後續結果回答。</li>
 </ul>
 <p>本階段限於 Proposal，尚未實作或證明上述貢獻。</p>
+<h3>L. List organization：本文結構</h3>
+<p>第三章比較 AI 與領域研究並收斂研究缺口；第四章整理五個核心思維、三項取捨與十個深度問題；第五章提出架構、流程、演算法及評估設計；第六章列出來源。系統需求與驗收情境另記於 <code>openspec/changes/energy-investigation-workflow/</code>，以 <code>DESIGN.md</code> 對照後續實作任務。</p>
 <h2>3. Related Work 相關研究</h2>
 <p>本章以五篇 AI 研究及五份領域研究／報告對照，兼顧 AI Technology 與 Domain Know-how。</p>
+<h3>M. Methods：方法分類與比較</h3>
+<p>以下依工具推理、時序異常與建築資料分析分類，比較能力、證據與適用限制。</p>
 <h3>從回答問題到執行調查工具</h3>
 <p>ReAct 將語言模型的任務規劃、外部動作與觀察結果交替串接。作者在問答、查證及互動環境中顯示此流程的價值，但也觀察到重複動作及無效檢索造成的失敗。因此，Agent 的關鍵是根據工具回傳的證據調整行動；僅把電表摘要交給 LLM 改寫，尚不足以構成此類調查流程。<a href="https://arxiv.org/html/2210.03629v3">A1</a></p>
 <p>在建築領域，Mulayim 等人已示範 GPT-4o 透過 Brick 語意模型查找資料，再產生 Python 程式分析 BAS 時序。其實驗也出現查詢錯誤、程式索引錯誤及回答遺漏感測器的情形。<strong>本專題解讀：</strong>建築資料分析 Agent 已有先例，本提案應強調異常調查流程與證據驗證，而非宣稱首次將 LLM 用於建築分析。<a href="https://eta-publications.lbl.gov/sites/default/files/2025-07/extraction_and_analysis_of_time_series_data.pdf">A4</a></p>
@@ -81,6 +89,7 @@
 <h3>從異常標籤走向有證據的說明</h3>
 <p>Time-RA 將異常類別與文字說明納入時序任務，提出 RATs40K 與模型微調評估。這支持本專題將「異常在哪裡、屬於何種模式、憑什麼判斷」分開呈現。不過，該資料的說明包含 AI 輔助標註；能產生符合標註的解釋，不等於證實物理因果。<strong>本專題解讀：</strong>建築總表的高負載只能構成進一步調查線索，不能直接證明某設備故障。<a href="https://arxiv.org/html/2507.15066v1">A5</a></p>
 <h3>AI Article Summary Table</h3>
+<h3>O. Organize：文獻比較表</h3>
 <p>表中的 Findings 均為作者結果；Limitation 若標示「外推限制」，代表本提案對研究適用範圍的判斷。</p>
 <table>
 <thead>
@@ -149,6 +158,7 @@
 </tbody>
 </table>
 <h3>Existing Research → Limitations → Research Gap → Our Project</h3>
+<h3>N. New proposed：研究缺口與本專題定位</h3>
 <p>上述研究已涵蓋 Agent 工具使用、規則生成、異常複核與建築資料查詢。本專題的切入點是：<strong>在建築總表與天氣時序、設備資訊不足的條件下，如何把可重現的數值異常轉成有證據、可追查且不超出資料能力的調查建議？</strong>這是本提案選定的實作與驗證問題，不是宣稱所有文獻都未處理過此組合，也不主張演算法首創。</p>
 <p>Energy Detective 擬以 Building Data Genome 2 的電表與天氣時序為基礎，先由 Python 執行品質檢查、統計基準或預測殘差計算，產生候選事件；再由 LLM 選擇已定義的工具，查詢同星期／同時段基準、天氣關係、持續時間與資料缺漏，並根據工具結果提出下一步調查。這項分工保留可重跑的數值證據，也提供可觀察的工具選擇與流程調整，形成超出單輪聊天摘要的 Agent 功能。</p>
 <p>領域規則應以明確條件保存，例如「相對歷史同類日的夜間基載偏高」或「高殘差同時伴隨資料缺漏」。夜間不直接等於無人使用；假日或營運時段若無可靠來源，只能標為分析假設。事件報告應逐項列出時間窗、觀測值、基準、殘差、規則版本、工具結果、尚缺資料及建議查核事項。可提出「請確認排程或占用變化」，不能從總表直接宣告「某台空調未關閉」。</p>

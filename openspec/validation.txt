@@ -1,0 +1,8 @@
+Date: 2026-11-12
+OpenSpec CLI: 2.0.0
+Command: openspec validate energy-investigation-workflow --strict
+Result: valid; 12 requirements
+Document build: python scripts/build_all.py
+Result: PASS; 30 slides; DOCX/PPTX XML; PDF bounds; 5+5 articles; 10 questions; numbered algorithm; local links
+Preserved: Group 25, all four members, evaluation protocol, updated design contracts
+Scope: documentation/specifications only; Agent implementation and experiments pending

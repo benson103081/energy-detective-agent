@@ -1,0 +1,8 @@
+schema: spec-driven
+context: |
+  Energy Detective：建築用電異常調查 AI Agent。
+  DIC3 僅完成提案與 OpenSpec 規格，應用程式及實驗尚未實作。
+  使用 BDG2 電表、天氣及建築資料；Python 計算數值，LLM 選工具及整理報告。
+  不得由總表直接確診設備故障或宣稱已實現節電。
+  文件使用繁體中文，Requirement 保留 SHALL，Scenario 使用 WHEN/THEN。
+  主要設計見 DESIGN.md，提案來源見 research/proposal_source.md。

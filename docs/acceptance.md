@@ -6,7 +6,7 @@
 
 | 評分項目 | 比例 | 可檢查內容 | 位置 |
 |---|---|---|---|
-| Introduction | 20% | A–F、2026 IEA 動機、使用者、問題、創新與可否證研究問題 | Proposal 第 1、2 章及第 5 章實驗協議 |
+| Introduction | 20% | 摘要 A–F、緒論 G–L、2026 IEA 動機、使用者、問題、創新與可否證研究問題 | Proposal 第 1、2 章及第 5 章實驗協議 |
 | Related Work | 20% | 5 篇 AI＋5 份領域來源；各表含 Ref/Year/Problem/AI Method/Domain Knowledge/Dataset/Findings/Limitation；研究缺口 | Proposal 第 3、6 章 |
 | Deep Research | 20% | 五種思維的意義／證據／設計；三個爭論的正反證據／共識邊界／未解問題；十題與判讀要點 | Proposal 第 4 章 |
 | Agent 與 Architecture | 20% | ①–⑧、模組責任、工具契約、觀察後決策、輸入輸出例 | Proposal 第 5 章、DESIGN.md |
@@ -55,3 +55,15 @@
 本次文件修訂使用 AI 協助整理作業對照、研究問題、文獻摘要、設計契約、實驗協議及文件建置程式。正式提交前，組員應逐項查原始來源、能重算合成例、說明每個工具與停止條件，並記錄實際使用工具及人工查核工作。不可把 AI 草稿直接當成實驗結果或親自執行的使用者訪談。
 
 建議準備三段口頭操作：解釋同星期／小時基準；展示天氣缺漏時為何仍能分析用電；從報告中的數字回查證據、原始資料位置與程式計算。十個深度問題的判讀要點見 Proposal 第 4 章。
+
+## DIC3 專用對照
+
+| 課堂要求 | 本次交付 |
+|---|---|
+| 安裝 OpenSpec、理解 SDD | OpenSpec 2.0.0；openspec/README.md |
+| A–F、五核心、三取捨、十細節 | Proposal 第1、4章及實驗協議 |
+| design.md 轉工作流程 | openspec/changes/energy-investigation-workflow/，DESIGN.md 對照表 |
+| Introduction refactor | Proposal 第2章 G–L |
+| Related Work refactor | Proposal 第3章 M–O；保留5篇AI及5份領域文獻比較 |
+
+目前僅完成提案與規格，非應用程式或實驗；嚴格格式驗證結果見 openspec/validation.txt。

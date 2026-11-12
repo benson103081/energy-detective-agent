@@ -27,7 +27,7 @@ Repository：<https://github.com/benson103081/energy-detective-agent>。
 - [實驗協議](research/evaluation_protocol.md)：研究問題、選樣、十個案例、指標、三組對照與結果表。
 - [作業與交付核對](docs/acceptance.md)：Proposal 評分對照及 Final Handover 待完成事項。
 
-本版修訂補入建築模型適應的 2025 研究，形成 5 篇 AI＋5 份領域來源；十個深度問題另附判讀要點。Proposal PPT 為 29 頁，仍是提案簡報，不能代替包含實測結果的 Final PPT。
+本版修訂補入建築模型適應的 2025 研究，形成 5 篇 AI＋5 份領域來源；十個深度問題另附判讀要點。Proposal PPT 為 30 頁，仍是提案簡報，不能代替包含實測結果的 Final PPT。
 
 ## 專題介紹
 
@@ -91,3 +91,16 @@ py -m venv .build-deps
 ## 階段狀態
 
 本 Repository 收錄 Proposal 文件、PPT 與 DESIGN.md。期末實作須另完成真實實驗、結果比較、結論、至少 21 頁 Final PPT，以及超過 10 分鐘的 YouTube 簡報與 Demo。
+
+## DIC3 提案重構
+
+本版保留第25組組員、實驗協議及既有簡報，將摘要 A–F、Introduction G–L、Related Work M–O 對齊課堂架構，並把系統設計轉成 OpenSpec 需求與驗收情境。
+
+- 提案：[Proposal.docx](deliverables/Proposal.docx)
+- 簡報：[Proposal.pptx](deliverables/Proposal.pptx)（30頁）
+- 系統設計：[DESIGN.md](DESIGN.md)
+- 規格與流程：[openspec/README.md](openspec/README.md)
+
+OpenSpec 的格式驗證不代表 Agent 已實作；後續程式及實驗任務保持未完成。
+
+合併前版本保留為 `before-dic3-20261112` 標籤。DIC3 透過 `dic3-refactor` 分支整合；若需撤回，可對合併 commit 執行 `git revert -m 1 <merge-commit>`，保留歷史。
